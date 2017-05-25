@@ -11,13 +11,13 @@ This is based on http://www.ee.unb.ca/cgi-bin/tervo/calc2.pl.
 
 # Instructions
 
-## Installation
+### Installation
 Clone the repository.
 ```git clone https://github.com/jayehernandez/GFCalculator.git```
 
 Run ```python GFcalcu.py```. Note that Python is required to run this program.
 
-## The Program
+### The Program
 
 The user will input A(x), B(x) and an irreducible polynomial P(x). The input polynomials would be entered as decimal coefficients separated by spaces. For example, x<sup>3</sup> + 7x + 6 would be entered as 1 0 7 6.
 
