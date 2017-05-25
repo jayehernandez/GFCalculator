@@ -90,6 +90,7 @@ while True:
 		elif op == 5:
 			break
 		elif op == 6:
+			print "\n\t\t\t\t\tAu Revoir!\n"
 			exit()
 		else:
-			print "\n\t\t\t\tInvalid choice. Input 1, 2, 3, 4, 5, or 6.\n"
+			print "\n\t\t\t\tInvalid choice. Input 1 - 6 only.\n"
