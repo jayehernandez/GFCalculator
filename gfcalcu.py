@@ -36,26 +36,27 @@ def addOrSub(a, b):
 		out.append(a[i] ^ b[i])
 	return out
 
+# multiply two decimals, change them to binary first
 def binMul(a, b, p):
 	a = [int(x) for x in bin(a)[2:]]
 	b = [int(x) for x in bin(b)[2:]]
-
 	out = []
+	# multiply binary
 	for x in range(len(b)-1, -1, -1):
 		toAdd = []
 		for y in range(len(a)):
-			toAdd.append(a[y]*b[x])
+			toAdd.append(a[y]*b[x]) # add to a row	
 		for y in range((len(b)-1)-x):
-			toAdd.append(0)
+			toAdd.append(0) # add zeroes at the back
 		addLeadZeroes(out, len(toAdd))
-		out = addOrSub(out, toAdd)
-	delLeadZeroes(out)
+		out = addOrSub(out, toAdd) # xor, current product
+	delLeadZeroes(out) 
 	# need to mod p if > m - 1
 	p1 = list(p)
 	while(len(out) > len(p1)-1):
-		addEndZeroes(p1, len(out))
+		addEndZeroes(p1, len(out)) # add zeroes before xor to p(x)
 		out = addOrSub(out, p1)
-		delLeadZeroes(out)
+		delLeadZeroes(out) 
 	return int(''.join(map(str,out)),2)
 
 def mul(a, b, p):
@@ -75,7 +76,7 @@ def div(a, b, p):
 	out = []
 	dividend = int(''.join(map(str,a)))
 	divisor = int(''.join(map(str,b)))
-	while (dividend > divisor):
+	while (dividend >= divisor):
 		x = a[0]/b[0]
 		out.append(x)
 		prod = mul(b, [x], p)
@@ -84,15 +85,32 @@ def div(a, b, p):
 		delLeadZeroes(a)
 		dividend = int(''.join(map(str,a)))
 		divisor = int(''.join(map(str,b)))
+		print a
 	return out, a
 
-Ax = raw_input("Input A(x): ")
-Bx = raw_input("Input B(x): ")
-Px = raw_input("Input P(x): ")
+while True:
+	try:
+		Ax = raw_input("Input A(x): ")
+		Ax = [int(x) for x in Ax.split(" ")]
+		break
+	except ValueError:
+		print "Invalid input. Must be integers separated by spaces."
 
-Ax = [int(x) for x in Ax.split(" ")]
-Bx = [int(x) for x in Bx.split(" ")]
-Px = [int(x) for x in Px.split(" ")]
+while True:
+	try:
+		Bx = raw_input("Input B(x): ")
+		Bx = [int(x) for x in Bx.split(" ")]
+		break
+	except ValueError:
+		print "Invalid input. Must be integers separated by spaces."
+
+while True:
+	try:
+		Px = raw_input("Input P(x): ")
+		Px = [int(x) for x in Px.split(" ")]
+		break
+	except ValueError:
+		print "Invalid input. Must be integers separated by spaces."
 
 print """
 Four operations that could be done:
